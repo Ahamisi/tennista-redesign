@@ -13,6 +13,8 @@ type MegaMenuProps = {
   /** Called when a link inside the panel is activated. */
   onNavigate: () => void;
   id: string;
+  /** About and Programs open from the start of the word. Media sits on the centre of its label. */
+  align?: "start" | "center";
 };
 
 /**
@@ -48,7 +50,7 @@ function useEdgeClamp() {
   return { ref, shift };
 }
 
-export function MegaMenu({ menu, onNavigate, id }: MegaMenuProps) {
+export function MegaMenu({ menu, onNavigate, id, align = "start" }: MegaMenuProps) {
   const [titleFirst, ...titleRest] = menu.title.split(" ");
   const { ref, shift } = useEdgeClamp();
 
@@ -61,12 +63,16 @@ export function MegaMenu({ menu, onNavigate, id }: MegaMenuProps) {
       animate="visible"
       exit="exit"
       style={{ marginLeft: shift }}
-      className="absolute top-full left-1/2 z-50 -translate-x-1/2 pt-4"
+      className={
+        align === "center"
+          ? "absolute top-full left-1/2 z-50 -translate-x-1/2 pt-4"
+          : "absolute top-full left-4 z-50 pt-4"
+      }
     >
       <div className="w-[min(92vw,44rem)] overflow-hidden rounded-panel bg-white shadow-panel ring-1 ring-blue/5">
         <div className="grid grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)]">
           {/* Left rail: heading + illustration */}
-          <div className="relative isolate flex min-h-[16rem] flex-col overflow-hidden bg-white p-7 pb-0">
+          <div className="relative isolate flex h-full min-h-[22rem] flex-col overflow-hidden bg-white px-7 pt-7">
             <h2 className="headline relative z-10 text-[2rem] leading-[0.92] text-blue">
               {titleFirst}
               <br />
@@ -78,18 +84,17 @@ export function MegaMenu({ menu, onNavigate, id }: MegaMenuProps) {
               </p>
             ) : null}
             <motion.div
-              initial={{ opacity: 0, scale: 0.92, y: 18 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
-              className="pointer-events-none absolute -bottom-7 -left-3 z-0 w-[92%] max-w-[17rem]"
+              className="relative mt-2 min-h-[15rem] flex-1"
             >
               <Image
                 src="/menu-art.png"
                 alt=""
-                width={900}
-                height={584}
-                sizes="272px"
-                className="h-auto w-full"
+                fill
+                sizes="320px"
+                className="object-contain object-bottom"
               />
             </motion.div>
           </div>

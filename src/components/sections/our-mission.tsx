@@ -1,0 +1,60 @@
+"use client";
+
+import { useState } from "react";
+import { useReducedMotion } from "motion/react";
+import { MediaPlaceholder } from "@/components/ui/media-placeholder";
+
+const shots = [
+  { label: "Player preparing a shot", tilt: 8.5 },
+  { label: "Player serving", tilt: -5 },
+  { label: "Player moving in", tilt: 3.7 },
+  { label: "Player at the net", tilt: -4.7 },
+];
+
+function Shot({ label, tilt, fanned }: { label: string; tilt: number; fanned: boolean }) {
+  return (
+    <li
+      data-mission-card
+      className="transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none"
+      style={{ transform: `rotate(${fanned ? tilt : 0}deg)` }}
+    >
+      <MediaPlaceholder
+        label={label}
+        className="aspect-[3/4] w-full rounded-[1.35rem] shadow-[0_22px_36px_-26px_rgb(0_31_82_/_0.55)]"
+      />
+    </li>
+  );
+}
+
+export function OurMission() {
+  const reduce = useReducedMotion();
+  const [fanned, setFanned] = useState(false);
+
+  return (
+    <section aria-labelledby="mission-heading" className="bg-white pt-14 pb-20 sm:pt-20 sm:pb-24">
+      <div className="px-5 sm:px-8 lg:px-12">
+        <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,28rem)] lg:gap-16">
+          <h1 id="mission-heading" className="headline text-display-xl text-blue">
+            Our mission
+          </h1>
+          <p className="max-w-xl text-[0.975rem] leading-[1.65] text-ink">
+            To create a world where every young person in underserved communities can thrive. Through the
+            transformative power of tennis, we aim to unlock their full potential, through character building,
+            achieving academic excellence, embracing healthy lifestyles, and creating visible success both on and
+            off the court
+          </p>
+        </div>
+
+        <ul
+          className="mt-12 grid grid-cols-2 gap-x-4 gap-y-8 py-6 sm:mt-16 lg:grid-cols-4 lg:gap-6"
+          onMouseEnter={() => setFanned(!reduce)}
+          onMouseLeave={() => setFanned(false)}
+        >
+          {shots.map((shot) => (
+            <Shot key={shot.label} {...shot} fanned={fanned} />
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}

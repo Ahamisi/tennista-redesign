@@ -158,6 +158,7 @@ export function SiteHeader() {
                           <MegaMenu
                             id={panelId}
                             menu={item.menu}
+                            align={item.label === "Media & Events" ? "center" : "start"}
                             onNavigate={() => setOpenMenu(null)}
                           />
                         ) : null}

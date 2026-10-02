@@ -1,15 +1,8 @@
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
+import { MediaPlaceholder } from "@/components/ui/media-placeholder";
 import { Reveal } from "@/components/ui/reveal";
 import { WaveDivider } from "@/components/ui/wave-divider";
-
-/**
- * "Tennis is the means" — the first content band under the hero.
- * The portrait is a stand-in until the design export lands; swap
- * `PORTRAIT_SRC` and drop the grayscale treatment.
- */
-const PORTRAIT_SRC = "/media/portrait-placeholder.jpg";
 
 export function MeansSection() {
   return (
@@ -35,16 +28,10 @@ export function MeansSection() {
           <Reveal delay={0.12} className="relative z-10 mx-auto w-full max-w-[28rem] lg:max-w-[34rem] lg:justify-self-end">
             <div className="relative aspect-square w-full">
               <div aria-hidden className="absolute top-[2%] right-[-2%] h-[90%] w-[90%] rounded-full bg-lime" />
-              <div className="relative z-10 mt-[7%] ml-[4%] h-[91%] w-[88%] overflow-hidden rounded-full bg-blue-tint shadow-[0_24px_50px_-28px_rgb(0_31_82/0.55)]">
-                <Image
-                  src={PORTRAIT_SRC}
-                  alt="A child smiling, the kind of story Tennista exists to start"
-                  fill
-                  sizes="(min-width: 1024px) 34rem, 80vw"
-                  className="object-cover grayscale"
-                  style={{ objectPosition: "center 18%" }}
-                />
-              </div>
+              <MediaPlaceholder
+                label="Portrait"
+                className="relative z-10 mt-[7%] ml-[4%] h-[91%] w-[88%] rounded-full shadow-[0_24px_50px_-28px_rgb(0_31_82/0.55)]"
+              />
             </div>
           </Reveal>
         </div>

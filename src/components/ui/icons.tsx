@@ -20,6 +20,52 @@ function Icon({ children, ...props }: IconProps) {
   );
 }
 
+export function EyeIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 48 48" fill="currentColor" aria-hidden focusable="false" {...props}>
+      <path d="M24 10c8.2 0 14.6 6.4 18.2 12.2a3 3 0 010 3.6C38.6 31.6 32.2 38 24 38S9.4 31.6 5.8 25.8a3 3 0 010-3.6C9.4 16.4 15.8 10 24 10zm0 6.5a7.5 7.5 0 100 15 7.5 7.5 0 000-15zm0 4a3.5 3.5 0 110 7 3.5 3.5 0 010-7z" />
+    </svg>
+  );
+}
+
+export function MissionIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 48 48" fill="currentColor" aria-hidden focusable="false" {...props}>
+      <path d="M22 4h3v16h-3z" />
+      <path d="M25 5h14l-4 5 4 5H25z" />
+      <path d="M4 44l14-22 6 9 5-8 15 21H4z" />
+    </svg>
+  );
+}
+
+export function SearchIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 48 48" fill="currentColor" aria-hidden focusable="false" {...props}>
+      <path d="M21 6a15 15 0 1010.6 25.6l8.2 8.2 3.2-3.2-8.2-8.2A15 15 0 0021 6zm0 6a9 9 0 110 18 9 9 0 010-18z" />
+    </svg>
+  );
+}
+
+export function DevelopIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 48 48" fill="currentColor" aria-hidden focusable="false" {...props}>
+      <path d="M22 4h4l1 5.2a14 14 0 014.6 2.7l5-2.2 2.8 2.8-2.2 5a14 14 0 012.7 4.6L44 23v4l-5.1 1a14 14 0 01-2.7 4.6l2.2 5-2.8 2.8-5-2.2a14 14 0 01-4.6 2.7L26 44h-4l-1-5.1a14 14 0 01-4.6-2.7l-5 2.2-2.8-2.8 2.2-5A14 14 0 018.1 28L3 27v-4l5.1-1a14 14 0 012.7-4.6l-2.2-5 2.8-2.8 5 2.2A14 14 0 0121 9.1L22 4zm2 12a8 8 0 100 16 8 8 0 000-16z" />
+      <circle cx="24" cy="24" r="3.2" />
+    </svg>
+  );
+}
+
+export function LeadIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 48 48" fill="currentColor" aria-hidden focusable="false" {...props}>
+      <circle cx="16" cy="14" r="4" />
+      <circle cx="32" cy="14" r="4" />
+      <path d="M8 34c0-5 3.6-8 8-8s8 3 8 8v4H8v-4zm16 4v-4c0-2.2.6-4.2 1.6-6 1.2-1.2 2.8-2 4.4-2 4.4 0 8 3 8 8v4H24z" />
+      <path d="M6 20h6v2.4H6zm30 0h6v2.4h-6zM7.2 16.6l4.2 4.2-1.7 1.7-4.2-4.2zm31.3 0l1.7 1.7-4.2 4.2-1.7-1.7z" />
+    </svg>
+  );
+}
+
 export function ArrowRight(props: IconProps) {
   return (
     <Icon {...props}>

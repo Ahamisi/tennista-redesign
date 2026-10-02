@@ -1,6 +1,15 @@
 import type { Metadata } from "next";
+import { BlogSection } from "@/components/sections/blog-section";
+import { Champion } from "@/components/sections/champion";
+import { GetInTheGame } from "@/components/sections/get-in-the-game";
 import { Hero } from "@/components/sections/hero";
 import { MeansSection } from "@/components/sections/means-section";
+import { Numbers } from "@/components/sections/numbers";
+import { Brands, PublicEyes } from "@/components/sections/partners";
+import { Philosophy } from "@/components/sections/philosophy";
+import { Quotes } from "@/components/sections/quotes";
+import { VisionMission } from "@/components/sections/vision-mission";
+import { WhyTennista } from "@/components/sections/why-tennista";
 import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
@@ -14,6 +23,16 @@ export default function HomePage() {
     <>
       <Hero />
       <MeansSection />
+      <VisionMission />
+      <Quotes />
+      <Philosophy />
+      <Numbers />
+      <WhyTennista />
+      <Champion />
+      <GetInTheGame />
+      <BlogSection />
+      <Brands />
+      <PublicEyes />
     </>
   );
 }

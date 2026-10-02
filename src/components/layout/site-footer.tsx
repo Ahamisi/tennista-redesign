@@ -5,7 +5,6 @@ import { BrandLockup } from "@/components/layout/brand";
 import { GiantWordmark } from "@/components/layout/giant-wordmark";
 import { NewsletterForm } from "@/components/layout/newsletter-form";
 import { Button } from "@/components/ui/button";
-import { Container } from "@/components/ui/container";
 import { Facebook, Instagram, LinkedIn } from "@/components/ui/icons";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/reveal";
 import { WaveDivider } from "@/components/ui/wave-divider";
@@ -19,15 +18,14 @@ const socials = [
 export function SiteFooter() {
   return (
     <footer className="relative">
-      {/* Newsletter ------------------------------------------------------- */}
-      <section aria-labelledby="newsletter-heading" className="relative bg-white pt-16">
-        <Container>
-          <Reveal className="rounded-block bg-lime px-6 pt-12 pb-32 sm:px-10 sm:pt-14 sm:pb-36 lg:px-16 lg:pt-16 lg:pb-40">
-            <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+      {/* Newsletter sits in from the edges, with white space around the lime panel. */}
+      <section aria-labelledby="newsletter-heading" className="bg-white px-4 pt-8 sm:px-6 sm:pt-10 lg:px-8">
+        <Reveal className="rounded-[1.75rem] bg-lime px-6 pt-12 pb-28 sm:px-10 sm:pt-14 lg:px-14 lg:pt-16 lg:pb-32">
+          <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
               <div>
                 <h2 id="newsletter-heading" className="headline text-display-lg text-blue">
                   <span className="block">Subscribe to</span>
-                  <span className="block text-blue-bright">our newsletter</span>
+                  <span className="block">our newsletter</span>
                 </h2>
                 <p className="mt-5 max-w-sm text-[0.9375rem] leading-normal font-medium text-blue-dark/80">
                   We&apos;d love to keep you posted on new programs, the kids we&apos;re working with, and how
@@ -36,20 +34,16 @@ export function SiteFooter() {
               </div>
               <NewsletterForm />
             </div>
-          </Reveal>
-        </Container>
-
-        {/* A single crest — low at both edges, high through the middle — laid
-            over the lime card so its rounded corners still show. */}
-        <WaveDivider
-          variant="hump"
-          className="absolute inset-x-0 bottom-0 z-10 h-[clamp(5.5rem,10vw,8rem)] text-blue"
-        />
+        </Reveal>
       </section>
 
-      {/* Link columns ----------------------------------------------------- */}
-      <div className="bg-blue text-white">
-        <Container>
+      {/* Link columns. The crest is full width and overlaps the lime panel. */}
+      <div className="relative bg-blue text-white">
+        <WaveDivider
+          variant="hump"
+          className="absolute inset-x-0 bottom-full z-10 h-16 text-blue sm:h-20"
+        />
+        <div className="w-full px-6 sm:px-8 lg:px-12">
           <RevealGroup className="grid gap-12 pt-6 pb-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)_minmax(0,0.7fr)] lg:gap-10">
             <RevealItem>
               <BrandLockup />
@@ -115,25 +109,23 @@ export function SiteFooter() {
               </Button>
             </RevealItem>
           </RevealGroup>
-        </Container>
+        </div>
 
         {/* Closing wordmark ---------------------------------------------- */}
         <div className="pt-8">
           <WaveDivider variant="hairline" className="h-10 text-lime/70 md:h-16" />
-          <Container>
-            <GiantWordmark className="-mt-2" />
-          </Container>
+          <GiantWordmark className="-mt-2" />
         </div>
 
         {/* Legal bar ----------------------------------------------------- */}
-        <Container>
+        <div className="w-full px-6 sm:px-8 lg:px-12">
           <div className="flex flex-col gap-2 border-t border-white/25 py-6 text-[0.8125rem] text-white/75 sm:flex-row sm:items-center sm:justify-between">
             <p>
               Copyright © {new Date().getFullYear()} {siteConfig.name}
             </p>
             <p>All rights reserved.</p>
           </div>
-        </Container>
+        </div>
       </div>
     </footer>
   );
