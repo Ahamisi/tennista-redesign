@@ -1,0 +1,165 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Design tokens
+   Placeholder values sampled from the approved UI mockups. When the designer
+   ships the style guide, this block is the only thing that has to change.
+--------------------------------------------------------------------------- */
+@theme {
+  /* Brand ------------------------------------------------------------------ */
+  --color-blue: #003890;
+  --color-blue-dark: #002a6b;
+  --color-blue-deep: #001f52;
+  --color-blue-bright: #0060b0;
+  --color-blue-tint: #e8f2fc;
+  --color-blue-tint-strong: #d3e6f9;
+
+  --color-lime: #d4de25;
+  --color-lime-soft: #e1e55a;
+  --color-lime-tint: #f5f9d8;
+  --color-lime-dark: #b8c215;
+
+  --color-ink: #0e1b2e;
+  --color-ink-muted: #46556b;
+  --color-ink-subtle: #7b8798;
+  --color-hairline: #e3e8ef;
+
+  /* Type ------------------------------------------------------------------- */
+  --font-sans: var(--font-brand-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-brand-display), ui-sans-serif, system-ui, sans-serif;
+  --font-wordmark: var(--font-brand-wordmark), ui-sans-serif, system-ui, sans-serif;
+
+  /* Fluid display scale — headline sizes used across sections. */
+  /* One leading for every display size. Anton carries extra space in its
+     em box, so 0.92 reads as a tight stacked headline without collisions. */
+  --text-display-2xl: clamp(3.25rem, 8vw, 7rem);
+  --text-display-2xl--line-height: 0.92;
+  --text-display-xl: clamp(2.75rem, 5.4vw, 4.5rem);
+  --text-display-xl--line-height: 0.92;
+  --text-display-lg: clamp(2.4rem, 4.4vw, 3.75rem);
+  --text-display-lg--line-height: 0.92;
+  --text-display-md: clamp(1.875rem, 3vw, 2.625rem);
+  --text-display-md--line-height: 0.92;
+  --text-display-sm: clamp(1.5rem, 2.2vw, 1.875rem);
+  --text-display-sm--line-height: 0.95;
+
+  --text-eyebrow: 0.8125rem;
+  --text-eyebrow--line-height: 1.2;
+  --text-eyebrow--letter-spacing: 0.22em;
+
+  --text-lead: 1rem;
+  --text-lead--line-height: 1.5;
+
+  /* Shape & depth ---------------------------------------------------------- */
+  --radius-card: 1.25rem;
+  --radius-panel: 1.75rem;
+  --radius-block: 2.5rem;
+
+  --shadow-panel: 0 28px 64px -24px rgb(0 31 82 / 0.28), 0 2px 8px -2px rgb(0 31 82 / 0.08);
+  --shadow-card: 0 18px 40px -22px rgb(0 31 82 / 0.22);
+  --shadow-cta: 0 12px 28px -12px rgb(0 60 148 / 0.45);
+
+  /* Layout ----------------------------------------------------------------- */
+  --spacing-header: 5.5rem;
+  --container-site: 82.5rem;
+
+  /* Motion ----------------------------------------------------------------- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-smooth: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+--------------------------------------------------------------------------- */
+@layer base {
+  :root {
+    /* Anton ships a single weight; bump to 900 when the licensed condensed
+       family with real weights is wired up. */
+    --display-weight: 400;
+  }
+
+  * {
+    min-width: 0;
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: #fff;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--color-lime);
+    color: var(--color-blue-deep);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-blue-bright);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Lenis drives scrolling; let it own the behaviour. */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Reusable type utilities
+--------------------------------------------------------------------------- */
+
+/** Oversized condensed uppercase headline — the brand's signature voice. */
+@utility headline {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  text-transform: uppercase;
+  letter-spacing: 0.002em;
+  text-wrap: balance;
+}
+
+/** Small tracked-out label that sits above a headline. */
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: var(--text-eyebrow);
+  letter-spacing: var(--text-eyebrow--letter-spacing);
+  text-transform: uppercase;
+}
+
+/** Body copy block with comfortable measure. */
+@utility prose-body {
+  font-size: var(--text-lead);
+  line-height: var(--text-lead--line-height);
+  color: var(--color-ink-muted);
+  max-width: 62ch;
+}
+
+/* ---------------------------------------------------------------------------
+   Accessibility
+--------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
