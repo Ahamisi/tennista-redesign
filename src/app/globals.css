@@ -6,18 +6,21 @@
    ships the style guide, this block is the only thing that has to change.
 --------------------------------------------------------------------------- */
 @theme {
-  /* Brand ------------------------------------------------------------------ */
-  --color-blue: #003890;
+  /* Brand — style guide ----------------------------------------------- */
+  --color-black: #000000;
+  --color-blue: #003c94;
   --color-blue-dark: #002a6b;
   --color-blue-deep: #001f52;
-  --color-blue-bright: #0060b0;
-  --color-blue-tint: #e8f2fc;
+  --color-blue-bright: #0160b4;
+  --color-blue-tint: #ecf4ff;
   --color-blue-tint-strong: #d3e6f9;
 
-  --color-lime: #d4de25;
-  --color-lime-soft: #e1e55a;
-  --color-lime-tint: #f5f9d8;
-  --color-lime-dark: #b8c215;
+  --color-lime: #e2e569;
+  --color-lime-soft: #e8ea86;
+  --color-lime-tint: #f9fade;
+  --color-lime-dark: #c5c84a;
+
+  --color-gray: #3f444b;
 
   --color-ink: #0e1b2e;
   --color-ink-muted: #46556b;
@@ -42,12 +45,48 @@
   --text-display-sm: clamp(1.5rem, 2.2vw, 1.875rem);
   --text-display-sm--line-height: 1.15;
 
-  --text-eyebrow: 0.8125rem;
-  --text-eyebrow--line-height: 1.2;
+  /* Style-guide desktop scale. Line heights are the measured pixel values:
+     H1 160/112, H2 124/86.8, H3 100/70, quote 64/51.2, H4 64/32, nav 20/20. */
+  --text-h1: clamp(3.5rem, 11.2vw, 10rem);
+  --text-h1--line-height: 0.7;
+  --text-h1--letter-spacing: -0.01em;
+
+  --text-h2: clamp(2.75rem, 8.7vw, 7.75rem);
+  --text-h2--line-height: 0.7;
+  --text-h2--letter-spacing: -0.01em;
+
+  --text-h3: clamp(2.5rem, 7vw, 6.25rem);
+  --text-h3--line-height: 0.7;
+  --text-h3--letter-spacing: -0.01em;
+
+  --text-h4: clamp(2rem, 4vw, 4rem);
+  --text-h4--line-height: 0.5;
+  --text-h4--letter-spacing: -0.01em;
+
+  --text-quote: clamp(2rem, 4vw, 4rem);
+  --text-quote--line-height: 0.8;
+
+  --text-blog-title: clamp(1.5rem, 2.4vw, 2.5rem);
+  --text-blog-title--line-height: 0.8;
+
+  --text-story: 1.5rem;
+  --text-story--line-height: 1.4;
+
+  --text-nav: 1.25rem;
+  --text-nav--line-height: 1;
+
+  --text-body: 1.125rem;
+  --text-body--line-height: 1.6;
+
+  --text-caption: 0.875rem;
+  --text-caption--line-height: 1.4;
+
+  --text-eyebrow: 0.875rem;
+  --text-eyebrow--line-height: 1.4;
   --text-eyebrow--letter-spacing: 0.22em;
 
-  --text-lead: 1rem;
-  --text-lead--line-height: 1.5;
+  --text-lead: 1.125rem;
+  --text-lead--line-height: 1.6;
 
   /* Shape & depth ---------------------------------------------------------- */
   --radius-card: 1.25rem;
@@ -72,9 +111,8 @@
 --------------------------------------------------------------------------- */
 @layer base {
   :root {
-    /* Anton ships a single weight; bump to 900 when the licensed condensed
-       family with real weights is wired up. */
-    --display-weight: 400;
+    /* Compressed ExtraBold for headers. 800 is the licensed-face stand-in. */
+    --display-weight: 800;
   }
 
   * {
@@ -89,6 +127,7 @@
     background-color: #fff;
     color: var(--color-ink);
     font-family: var(--font-sans);
+    font-weight: 300;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
@@ -128,7 +167,7 @@
   font-family: var(--font-display);
   font-weight: var(--display-weight);
   text-transform: uppercase;
-  letter-spacing: 0.002em;
+  letter-spacing: -0.01em;
   text-wrap: balance;
 }
 

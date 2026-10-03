@@ -28,7 +28,11 @@ export default function HomePage() {
       <Philosophy />
       <Numbers />
       <WhyTennista />
-      <Champion />
+      <Champion
+        image="/every-champion-bg.jpg"
+        cutout="/every-champion-girl-primary.png"
+        photo="Two girls with tennis rackets on an outdoor court"
+      />
       <GetInTheGame />
       <BlogSection />
       <Brands />

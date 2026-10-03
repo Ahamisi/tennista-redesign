@@ -114,7 +114,7 @@ export function SiteHeader() {
                           onClick={() => (active ? setOpenMenu(null) : openWith(item.label))}
                           onFocus={() => openWith(item.label)}
                           className={cn(
-                            "relative flex items-center gap-1.5 rounded-full px-4 py-2.5 text-[0.9375rem] font-bold transition-colors duration-200",
+                            "relative flex items-center gap-1.5 rounded-full px-4 py-2.5 font-display text-[1.25rem] leading-none font-bold transition-colors duration-200",
                             active || current ? "text-blue-bright" : "text-blue hover:text-blue-bright",
                           )}
                         >
@@ -138,7 +138,7 @@ export function SiteHeader() {
                           href={item.href}
                           aria-current={current ? "page" : undefined}
                           className={cn(
-                            "relative flex items-center rounded-full px-4 py-2.5 text-[0.9375rem] font-bold transition-colors duration-200",
+                            "relative flex items-center rounded-full px-4 py-2.5 font-display text-[1.25rem] leading-none font-bold transition-colors duration-200",
                             current ? "text-blue-bright" : "text-blue hover:text-blue-bright",
                           )}
                         >

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
@@ -17,38 +18,46 @@ const lines = [
 ] as const;
 
 /**
- * Hero band. Photography drops into the left/right media slots once the
- * designer hands over the final cut-outs.
+ * Hero band. Players and the tennis-balls graphic keep their own positions.
+ * Court lines are absolute and do not move either of them.
  */
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden bg-blue pt-14 pb-[clamp(6rem,18vw,13rem)]">
-      {/* Net posts */}
-      <div aria-hidden className="absolute inset-x-0 top-0 z-0 flex justify-between px-[8%]">
-        <span className="h-[clamp(5rem,14vw,11rem)] w-[6px] bg-white/85" />
-        <span className="h-[clamp(5rem,14vw,11rem)] w-[6px] bg-white/85" />
+    <section className="relative isolate overflow-hidden bg-blue pt-14 pb-[clamp(7rem,20vw,14rem)] lg:min-h-[45.5rem]">
+      {/* Court lines sit on top of the blue and do not take part in layout. */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-[1]">
+        <span className="absolute top-0 left-[9%] h-[11.5rem] w-[7px] bg-white" />
+        <span className="absolute top-0 right-[9%] h-[11.5rem] w-[7px] bg-white" />
+        <span className="absolute inset-x-0 top-[34.3rem] h-[6px] bg-white" />
       </div>
 
-      {/* Photography slots — intentionally empty until final cut-outs land. */}
-      <div
-        aria-hidden
-        className="absolute inset-y-0 left-0 z-0 hidden w-[24%] bg-gradient-to-r from-blue-deep/35 to-transparent lg:block"
+      <Image
+        src="/tennis-hero-girl-1.png"
+        alt="Young player with a racket"
+        width={710}
+        height={574}
+        priority
+        className="pointer-events-none absolute bottom-0 left-[-1rem] z-20 hidden h-[calc(44rem-12px)] w-auto max-w-[62vw] lg:block"
       />
-      <div
-        aria-hidden
-        className="absolute inset-y-0 right-0 z-0 hidden w-[24%] bg-gradient-to-l from-blue-deep/35 to-transparent lg:block"
+      <Image
+        src="/tennis-hero-girl-2.png"
+        alt="Young player hitting a forehand"
+        width={644}
+        height={605}
+        priority
+        className="pointer-events-none absolute right-[-2.5rem] bottom-0 z-20 hidden h-[calc(44rem-12px)] w-auto max-w-[62vw] lg:block"
       />
 
-      <Container className="relative z-10">
-        <div className="mx-auto max-w-2xl text-center">
-          <h1 className="headline text-display-xl text-white">
+      <Container className="relative z-30">
+        <div className="mx-auto max-w-[58.5rem] text-center">
+          <h1 className="headline text-h2 text-white">
             {lines.map((line, lineIndex) => (
               <motion.span
                 key={lineIndex}
                 initial={{ opacity: 0, y: "0.35em" }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, ease: ease.out, delay: 0.12 * lineIndex }}
-                className="block"
+                className={lineIndex === 0 ? "block" : "block mt-[0.18em]"}
               >
                 {line.map((word, wordIndex) => (
                   <span key={word.text} className={word.tone === "lime" ? "text-lime" : "text-white"}>
@@ -64,7 +73,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: ease.out, delay: 0.4 }}
-            className="mx-auto mt-7 max-w-xl text-[0.975rem] leading-normal text-white/85 sm:text-base sm:leading-relaxed"
+            className="mx-auto mt-7 max-w-xl text-body text-white/85"
           >
             Every champion starts somewhere with a chance. At Tennista Foundation, we use tennis, education,
             and life skills to unlock potential in young people and turn it into confidence, direction, and
@@ -87,31 +96,21 @@ export function Hero() {
         </div>
       </Container>
 
-      {/* Lime court shapes */}
+      <img
+        src="/tennis-balls.svg"
+        alt=""
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 w-full"
+      />
+      {/* White space traces the ball's curve and clips the players to the same arc. */}
       <svg
         aria-hidden
-        viewBox="0 0 1440 300"
+        viewBox="0 0 1440 100"
         preserveAspectRatio="none"
-        className="absolute inset-x-0 bottom-0 z-0 h-[clamp(7rem,20vw,16rem)] w-full"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[25] h-[4.75rem] w-full"
       >
-        <path d="M0,300 V124 C150,58 350,104 492,236 C524,266 540,300 540,300 Z" fill="var(--color-lime)" />
         <path
-          d="M1440,300 V104 C1288,44 1086,94 946,230 C914,262 900,300 900,300 Z"
-          fill="var(--color-lime)"
-        />
-        <path
-          d="M0,192 C146,128 326,172 462,286"
-          fill="none"
-          stroke="white"
-          strokeWidth="8"
-          strokeLinecap="round"
-        />
-        <path
-          d="M1440,172 C1296,112 1108,156 976,276"
-          fill="none"
-          stroke="white"
-          strokeWidth="8"
-          strokeLinecap="round"
+          d="M0,52 C240,74 480,98 740,100 C1020,98 1240,70 1440,40 L1440,100 L0,100 Z"
+          fill="white"
         />
       </svg>
     </section>

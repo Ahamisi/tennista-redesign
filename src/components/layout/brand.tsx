@@ -34,17 +34,17 @@ export function Brand({ className, height = 52, priority = false }: BrandProps) 
   );
 }
 
-/**
- * Typographic lockup for dark backgrounds — "TENNISTA" over a FOUNDATION bar,
- * drawn in type so it stays crisp at any size.
- */
+/** Wordmark for the dark footer. */
 export function BrandLockup({ className }: { className?: string }) {
   return (
     <Link href="/" aria-label={`${siteConfig.name} — home`} className={cn("inline-block", className)}>
-      <span className="headline block text-[2.25rem] leading-none text-white">Tennista</span>
-      <span className="mt-1.5 block rounded-[3px] border border-white/35 px-2 py-[3px] text-center text-[0.5625rem] font-medium tracking-[0.42em] text-white">
-        FOUNDATION
-      </span>
+      <Image
+        src="/tennista-footer-logo.png"
+        alt={siteConfig.name}
+        width={156}
+        height={38}
+        className="h-10 w-auto"
+      />
     </Link>
   );
 }
