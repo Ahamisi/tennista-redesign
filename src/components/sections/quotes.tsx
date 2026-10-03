@@ -14,6 +14,8 @@ export type Quote = {
   photo: string;
   /** Final photograph. When set, it fills the card from the top. */
   image?: string;
+  /** Object-position for the photograph. */
+  imagePosition?: string;
 };
 
 const quotes: Quote[] = [
@@ -86,7 +88,7 @@ export function Quotes({
                   alt=""
                   fill
                   sizes="(min-width: 1024px) 80rem, 100vw"
-                  className="pointer-events-none object-cover object-[72%_32%]"
+                  className={cn("pointer-events-none object-cover", quote.imagePosition ?? "object-[72%_32%]")}
                 />
               ) : null}
               <div

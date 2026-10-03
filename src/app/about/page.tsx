@@ -24,13 +24,17 @@ export default function AboutPage() {
             text: "No matter what accomplishment you make, somebody helped you.",
             attribution: "Althea Gibson",
             photo: "Althea Gibson",
+            image: "/quotes/althea-gibson.jpg",
+            imagePosition: "object-center",
           },
         ]}
       />
       <AboutTeam />
       <Champion
         id="court-heading"
-        photo="Get a child to the court"
+        image="/every-champion-bg.jpg"
+        cutout="/every-champion-girl-primary.png"
+        photo="Two girls with tennis rackets on an outdoor court"
         title={
           <>
             Get a child

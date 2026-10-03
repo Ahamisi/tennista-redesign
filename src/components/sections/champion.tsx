@@ -32,7 +32,7 @@ export function ChampionPhoto({ image, cutout, alt }: ChampionPhotoProps) {
         <img
           src={image}
           alt=""
-          className="absolute inset-x-0 top-[14%] h-full w-full object-cover object-[center_22%]"
+          className="absolute inset-0 h-full w-full object-cover object-[center_22%]"
         />
       </div>
       <div className="pointer-events-none absolute -top-[22%] right-0 hidden h-[122%] w-[55%] overflow-hidden lg:block">

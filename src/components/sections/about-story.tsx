@@ -2,31 +2,34 @@
 
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
-import { MediaPlaceholder } from "@/components/ui/media-placeholder";
 import { cn } from "@/lib/utils";
 
 const chapters = [
   {
     tone: "bg-blue-tint",
-    image: "Ready position",
+    image: "/about-section-1.jpg",
+    alt: "A girl in a pink skirt ready at the net",
     imageFirst: false,
     body: "Tennista aims to extend tennis, education, and life skills to underserved youth. As a 501(c)(3) nonprofit, we focus on communities where talent often lacks access, providing spaces for young people to not only learn tennis but also develop leadership skills.",
   },
   {
-    tone: "bg-[#f7f6dc]",
-    image: "Rally",
+    tone: "bg-lime-tint",
+    image: "/about-section-2.jpg",
+    alt: "A player tossing the ball to serve",
     imageFirst: true,
     body: "Since 2021, our mission has remained to inspire and nurture the next generation of leaders while fostering positive societal change by combining tennis, education, and life skills programmes.",
   },
   {
     tone: "bg-blue-tint",
-    image: "Serve",
+    image: "/about-section-3.jpg",
+    alt: "A girl hitting a forehand on a clay court",
     imageFirst: false,
     body: "We're building healthier bodies, sharper minds, and the next generation of changemakers. Today, we reach 300 young people across various communities.",
   },
   {
-    tone: "bg-[#f7f6dc]",
-    image: "Forehand",
+    tone: "bg-lime-tint",
+    image: "/we-believe.jpg",
+    alt: "A boy hitting a forehand on a clay court",
     imageFirst: true,
     body: "We believe access to tennis and education isn't a privilege. It's a right.",
   },
@@ -48,14 +51,21 @@ export function AboutStory() {
             >
               <div
                 className={cn(
-                  "grid items-center gap-6 lg:grid-cols-2 lg:gap-12",
-                  chapter.imageFirst && "lg:[&>*:first-child]:order-2",
+                  "grid items-center gap-6",
+                  chapter.image && "lg:grid-cols-2 lg:gap-12",
+                  chapter.image && chapter.imageFirst && "lg:[&>*:first-child]:order-2",
                 )}
               >
                 <p className="max-w-xl px-2 text-[1.05rem] leading-relaxed font-medium text-blue sm:px-4 sm:text-lg">
                   {chapter.body}
                 </p>
-                <MediaPlaceholder label={chapter.image} className="aspect-[4/3] w-full rounded-[1.15rem]" />
+                {chapter.image ? (
+                  <img
+                    src={chapter.image}
+                    alt={chapter.alt}
+                    className="aspect-[4/3] w-full rounded-[1.15rem] object-cover"
+                  />
+                ) : null}
               </div>
             </article>
           ))}

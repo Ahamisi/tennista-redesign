@@ -24,7 +24,7 @@ const cards: GameCardData[] = [
     titleClass: "text-blue",
     bodyClass: "text-blue-dark",
     button: "outlineBlue",
-    image: "/geg-serve.jpg",
+    image: "/geg-serve-circle.png",
     alt: "A woman helping two children with their schoolwork",
   },
   {
@@ -36,7 +36,7 @@ const cards: GameCardData[] = [
     titleClass: "text-white",
     bodyClass: "text-white/90",
     button: "outlineWhite",
-    image: "/geg-support.jpg",
+    image: "/geg-support-circle.png",
     alt: "A coach handing supply bags to young players in the stands",
   },
   {
@@ -48,7 +48,7 @@ const cards: GameCardData[] = [
     titleClass: "text-white",
     bodyClass: "text-white/90",
     button: "outlineWhite",
-    image: "/geg-sponsor.jpg",
+    image: "/geg-sponsor-circle.png",
     alt: "A boy holding a trophy and a tennis racket",
   },
   {
@@ -60,7 +60,7 @@ const cards: GameCardData[] = [
     titleClass: "text-lime",
     bodyClass: "text-white/90",
     button: "lime",
-    image: "/geg-student.jpg",
+    image: "/geg-student-circle.png",
     alt: "A girl filling in an application at a table",
   },
 ];
@@ -68,7 +68,7 @@ const cards: GameCardData[] = [
 function GameCard({ card, index }: { card: GameCardData; index: number }) {
   return (
     <div className="lg:sticky lg:top-[5.25rem]" style={{ zIndex: index + 1 }}>
-      <article className={`relative overflow-hidden rounded-[1.75rem] ${card.panel}`}>
+      <article className={`relative isolate overflow-hidden rounded-[1.75rem] ${card.panel}`}>
         <div className="relative z-10 flex flex-col justify-center px-6 py-10 sm:px-10 sm:py-12 lg:min-h-[23rem] lg:max-w-[46%] lg:px-14 lg:py-14">
           <h3 className={`headline text-display-lg leading-[0.85] ${card.titleClass}`}>{card.title}</h3>
           <p className={`mt-3 max-w-[18rem] text-[0.975rem] leading-relaxed ${card.bodyClass}`}>{card.body}</p>
@@ -79,11 +79,11 @@ function GameCard({ card, index }: { card: GameCardData; index: number }) {
           </div>
         </div>
 
-        <div className="relative h-64 sm:h-80 lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[62%]">
+        <div className="relative z-20 h-64 sm:h-80 lg:absolute lg:inset-y-0 lg:right-0 lg:h-auto lg:w-[62%]">
           <img
             src={card.image}
             alt={card.alt}
-            className="absolute inset-0 h-full w-full object-cover object-left"
+            className="absolute inset-0 h-full w-full"
           />
         </div>
       </article>
@@ -98,7 +98,7 @@ export function GetInTheGame() {
         <h2 id="game-heading" className="headline text-center text-display-lg text-blue sm:text-display-xl">
           Get in the game.
         </h2>
-        <div className="mt-10 flex flex-col sm:mt-14">
+        <div className="mt-10 flex flex-col gap-20 sm:mt-14 lg:gap-[11.25rem]">
           {cards.map((card, index) => (
             <GameCard key={card.title} card={card} index={index} />
           ))}
