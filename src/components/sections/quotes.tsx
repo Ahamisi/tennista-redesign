@@ -16,6 +16,8 @@ export type Quote = {
   image?: string;
   /** Object-position for the photograph. */
   imagePosition?: string;
+  /** Keep the photograph on the right of the card so the person stays clear of the blue. */
+  imageAlign?: "right";
 };
 
 const quotes: Quote[] = [
@@ -56,10 +58,12 @@ export function Quotes({
   id = "quotes-heading",
   /** `page` matches a full-width band such as the mission photo row. */
   edge = "site",
+  overlapNext = false,
 }: {
   items?: readonly Quote[];
   id?: string;
   edge?: "site" | "page";
+  overlapNext?: boolean;
 }) {
   const frame =
     edge === "page" ? (
@@ -67,7 +71,13 @@ export function Quotes({
     ) : undefined;
 
   return (
-    <section aria-labelledby={id} className="bg-white py-6 sm:py-10">
+    <section
+      aria-labelledby={id}
+      className={cn(
+        "relative bg-white py-6 sm:py-10",
+        overlapNext && "z-20 mb-[-3rem] bg-transparent pb-0 sm:mb-[-4rem] sm:pb-0",
+      )}
+    >
       <h2 id={id} className="sr-only">
         Quotes
       </h2>
@@ -83,13 +93,22 @@ export function Quotes({
               )}
             >
               {quote.image ? (
-                <Image
-                  src={quote.image}
-                  alt=""
-                  fill
-                  sizes="(min-width: 1024px) 80rem, 100vw"
-                  className={cn("pointer-events-none object-cover", quote.imagePosition ?? "object-[72%_32%]")}
-                />
+                <div
+                  className={cn(
+                    "pointer-events-none absolute inset-y-0",
+                    quote.imageAlign === "right"
+                      ? "right-0 w-[67%] [mask-image:linear-gradient(to_right,transparent_0%,black_24%)] [-webkit-mask-image:linear-gradient(to_right,transparent_0%,black_24%)]"
+                      : "inset-x-0",
+                  )}
+                >
+                  <Image
+                    src={quote.image}
+                    alt=""
+                    fill
+                    sizes="(min-width: 1024px) 80rem, 100vw"
+                    className={cn("object-cover", quote.imagePosition ?? "object-[72%_32%]")}
+                  />
+                </div>
               ) : null}
               <div
                 aria-hidden

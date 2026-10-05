@@ -1,8 +1,5 @@
-import { MediaPlaceholder } from "@/components/ui/media-placeholder";
-
 /**
- * Follows the Since 2021 band on What Defines Us. The photo slot waits for
- * the court export.
+ * Follows the Since 2021 band on What Defines Us.
  */
 export function OurApproach() {
   return (
@@ -24,9 +21,10 @@ export function OurApproach() {
         </div>
 
         <div className="mt-10 grid items-center gap-8 rounded-[1.75rem] bg-blue-tint p-4 sm:mt-14 sm:p-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-12 lg:p-8">
-          <MediaPlaceholder
-            label="Player on a clay court"
-            className="aspect-[4/5] w-full rounded-[1.25rem] sm:aspect-[5/6]"
+          <img
+            src="/we-envision-a-world.jpg"
+            alt="A player hitting a forehand on a clay court"
+            className="aspect-[4/5] w-full rounded-[1.25rem] object-cover object-[center_28%] sm:aspect-[5/6]"
           />
           <div className="px-2 pb-4 sm:px-4 lg:py-6 lg:pr-6">
             <p className="text-[clamp(1.45rem,2.3vw,2.05rem)] leading-[1.25] font-bold text-blue">

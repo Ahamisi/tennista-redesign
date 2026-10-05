@@ -118,6 +118,17 @@ export function MobileNav({ open, onClose }: MobileNavProps) {
                             className="overflow-hidden"
                           >
                             <ul className="space-y-1 pb-4">
+                              {item.href === "/programs" ? (
+                                <li>
+                                  <Link
+                                    href={item.href}
+                                    onClick={onClose}
+                                    className="block rounded-lg py-2 text-[0.9375rem] font-medium text-white transition-colors hover:bg-white/10"
+                                  >
+                                    {item.menu.title}
+                                  </Link>
+                                </li>
+                              ) : null}
                               {item.menu.sections.flatMap((section) =>
                                 isNavGroup(section)
                                   ? [

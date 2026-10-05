@@ -15,6 +15,8 @@ type MegaMenuProps = {
   id: string;
   /** About and Programs open from the start of the word. Media sits on the centre of its label. */
   align?: "start" | "center";
+  /** When set, the panel heading links to the section overview. */
+  href?: string;
 };
 
 /**
@@ -50,7 +52,7 @@ function useEdgeClamp() {
   return { ref, shift };
 }
 
-export function MegaMenu({ menu, onNavigate, id, align = "start" }: MegaMenuProps) {
+export function MegaMenu({ menu, onNavigate, id, align = "start", href }: MegaMenuProps) {
   const [titleFirst, ...titleRest] = menu.title.split(" ");
   const { ref, shift } = useEdgeClamp();
 
@@ -73,11 +75,21 @@ export function MegaMenu({ menu, onNavigate, id, align = "start" }: MegaMenuProp
         <div className="grid grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)]">
           {/* Left rail: heading + illustration */}
           <div className="relative isolate flex h-full min-h-[22rem] flex-col overflow-hidden bg-white px-7 pt-7">
-            <h2 className="headline relative z-10 text-[2rem] leading-[0.92] text-blue">
-              {titleFirst}
-              <br />
-              {titleRest.join(" ")}
-            </h2>
+            {href ? (
+              <Link href={href} onClick={onNavigate} className="relative z-10 w-fit">
+                <h2 className="headline text-[2rem] leading-[0.92] text-blue transition-colors hover:text-blue-bright">
+                  {titleFirst}
+                  <br />
+                  {titleRest.join(" ")}
+                </h2>
+              </Link>
+            ) : (
+              <h2 className="headline relative z-10 text-[2rem] leading-[0.92] text-blue">
+                {titleFirst}
+                <br />
+                {titleRest.join(" ")}
+              </h2>
+            )}
             {menu.blurb ? (
               <p className="relative z-10 mt-3 max-w-[14rem] text-[0.8125rem] leading-snug text-ink-subtle">
                 {menu.blurb}

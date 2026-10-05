@@ -1,6 +1,3 @@
-import { MediaPlaceholder } from "@/components/ui/media-placeholder";
-import { WaveDivider } from "@/components/ui/wave-divider";
-
 export function ProgramsHero() {
   return (
     <section aria-labelledby="programs-heading" className="bg-white pt-14 sm:pt-16">
@@ -15,9 +12,23 @@ export function ProgramsHero() {
         </p>
       </div>
 
-      <div className="relative mt-10 h-[clamp(16rem,38vw,28rem)] overflow-hidden sm:mt-12">
-        <MediaPlaceholder label="Players on court" className="absolute inset-0 h-full w-full rounded-none" />
-        <WaveDivider variant="hump" className="absolute inset-x-0 bottom-0 text-white" />
+      <div className="relative mt-10 overflow-hidden rounded-t-[1.75rem] sm:mt-12">
+        <img
+          src="/our-programs-bg.jpg"
+          alt="A coach and a young player on a clay court"
+          className="block h-auto w-full"
+        />
+        <svg
+          viewBox="0 0 1440 140"
+          preserveAspectRatio="none"
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-[clamp(3.25rem,8vw,6.75rem)] w-full text-white"
+        >
+          <path
+            d="M0,92 C220,104 420,34 700,26 C980,18 1220,48 1440,82 L1440,140 L0,140 Z"
+            fill="currentColor"
+          />
+        </svg>
       </div>
     </section>
   );

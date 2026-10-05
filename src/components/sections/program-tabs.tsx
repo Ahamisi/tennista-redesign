@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { SdgGoals } from "@/components/sections/sdg-goals";
 import { Button } from "@/components/ui/button";
-import { MediaPlaceholder } from "@/components/ui/media-placeholder";
 import { cn } from "@/lib/utils";
 
 const tabs = ["Tennis", "Educational Scholarships", "Life Skills Training"] as const;
@@ -11,19 +10,22 @@ const tabs = ["Tennis", "Educational Scholarships", "Life Skills Training"] as c
 const chapters = [
   {
     tone: "bg-blue-tint",
-    image: "Young players with rackets",
+    image: "/how-it-started-1.jpg",
+    alt: "Players and coaches at the Tennista Foundation Junior Tennis Tournament",
     imageFirst: true,
     body: "In 2021, Tennista Foundation was founded as a non-profit based in Lagos, on a simple belief: tennis could open doors for young people, not just serve as a sport of privilege. Three years later, Tennista foundation expanded its global focus, by registering as a 501(c)(3) non-profit organization in the US in 2024.",
   },
   {
     tone: "bg-[#f7f6dc]",
-    image: "Junior tournament at Rowe Park",
+    image: "/howit-started-2.jpg",
+    alt: "A coach speaking with children on an outdoor court",
     imageFirst: false,
     body: "In 2025, Tennista held its first Junior Tennis Tournament at Rowe Park, Lagos, drawing 55 young athletes and awarding scholarships to winners and runners-up.",
   },
   {
     tone: "bg-blue-tint",
-    image: "Players at Lagos Country Club",
+    image: "/how-it-started-3.jpg",
+    alt: "Speakers seated at a Junior Tennis panel",
     imageFirst: true,
     body: "By April 2026, the tournament's second edition at the Lagos Country Club had grown to hundreds of participants and was even better. We announced partnerships with U.S. institutions to help top Nigerian players earn collegiate tennis scholarships, turning this supposedly local tournament into an international pipeline from courts in Lagos to campuses abroad.",
   },
@@ -32,19 +34,22 @@ const chapters = [
 const pillars = [
   {
     title: "School Tennis Support",
-    image: "School tennis support",
+    image: "/school-tennis-support.jpg",
+    alt: "A scholarship cheque presented in front of a Tennista backdrop",
     href: "/programs/school-tennis-support",
     body: "Not every child gets the chance to walk onto a tennis court and discover what they're capable of. For many students, the biggest barrier isn't talent; it's access.",
   },
   {
     title: "Junior Tennis Open",
-    image: "Junior tennis open",
+    image: "/junio-tennis-open.jpg",
+    alt: "A speaker with a microphone at the Junior Tennis Open",
     href: "/junior-tennis-open",
     body: "The Tennista Foundation Junior Tennis Tournament is a competitive platform for young players aged 8 to 16 where their talent is tested and rewarded on the court.",
   },
   {
     title: "Tennis Clinic for Kids",
-    image: "Tennis clinic for kids",
+    image: "/tennis-clinic.jpg",
+    alt: "Children with rackets at a tennis clinic",
     href: "/programs/tennis-training",
     body: "Our tennis program features eight weeks of beginner-to-expert training with meaningful and positive experiences that will be enjoyable and lead to positive development.",
   },
@@ -109,15 +114,19 @@ function ScholarshipsPanel() {
 }
 
 const activities = [
-  { title: "Games", image: "Children with rackets on court" },
-  { title: "Role play", image: "Player hitting a forehand" },
-  { title: "Group work", image: "Group lined up on court" },
-  { title: "Open discussion", image: "Coach talking with two players" },
-  { title: "Debates", image: "Speaker with a microphone" },
-  { title: "Field work", image: "Player outdoors with a racket" },
-  { title: "Panel discussions", image: "Panel seated at a table" },
-  { title: "Mentoring programs", image: "Mentors working with a student" },
+  { title: "Games", image: "/games.jpg", alt: "Children with rackets on a clay court" },
+  { title: "Role play", image: "/role-play.jpg", alt: "A boy hitting a forehand" },
+  { title: "Group work", image: "/group-work.jpg", alt: "Children lined up across a court" },
+  { title: "Open discussion", image: "/open-discussion.jpg", alt: "A coach talking with two players" },
+  { title: "Debates", image: "/debates.jpg", alt: "A student speaking into a microphone" },
+  { title: "Field work", image: "/field-work.jpg", alt: "A girl smiling beside a tennis racket" },
+  { title: "Panel discussions", image: "/panel-discussions.jpg", alt: "A panel seated at a table" },
+  { title: "Mentoring programs", image: "/mentoring-programs.jpg", alt: "Mentors working through papers with a student" },
 ] as const;
+
+/** Desktop styles: 40px, compressed extra-bold, 80% line-height, −1% tracking, #0160B4. */
+const boxedLabel =
+  "headline text-[clamp(1.5rem,2.8vw,2.5rem)] leading-[0.8] text-blue-bright [text-box-edge:cap_alphabetic] [text-box-trim:trim-both]";
 
 const whoPillars = [
   "Critical thinking & decision-making",
@@ -164,29 +173,34 @@ function LifeSkillsPanel() {
         <Button href="/get-involved/enrol">Become A Student</Button>
       </div>
 
-      <div className="mt-16 grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+      <div className="mt-16 grid items-center gap-8 lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] lg:gap-12">
         <div>
           <h3 className="text-[clamp(1.7rem,3vw,2.4rem)] leading-[1.15] font-bold text-blue">
             We build on three pillars defined by the World Health Organization
           </h3>
           <ul className="mt-6 flex flex-col gap-4">
             {whoPillars.map((pillar) => (
-              <li key={pillar} className="rounded-[1.15rem] bg-blue-tint px-6 py-6 text-sm font-bold tracking-wide text-blue uppercase">
+              <li key={pillar} className={cn("rounded-[1.15rem] bg-blue-tint px-6 py-7", boxedLabel)}>
                 {pillar}
               </li>
             ))}
           </ul>
         </div>
-        <MediaPlaceholder label="Player returning a ball" className="aspect-[5/4] w-full rounded-[1.25rem]" />
+        <img
+          src="/critical-thinking.jpg"
+          alt="A player returning a ball in front of blue stadium seats"
+          className="aspect-square w-full rounded-[1.25rem] object-cover"
+        />
       </div>
 
       <h3 className="mt-20 text-center text-[clamp(1.6rem,2.6vw,2.1rem)] font-bold text-blue">
         From there, we go deeper
       </h3>
-      <div className="mt-8 grid items-start gap-6 lg:grid-cols-2 lg:gap-10">
-        <MediaPlaceholder
-          label="Player with two tennis balls"
-          className="aspect-[4/3] w-full rounded-[1.25rem] lg:sticky lg:top-[5.75rem]"
+      <div className="mt-8 grid items-start gap-6 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:gap-10">
+        <img
+          src="/we-go-deeper.jpg"
+          alt="A player on court with tennis balls in the foreground"
+          className="aspect-[1020/929] w-full rounded-[1.25rem] object-cover lg:sticky lg:top-[5.75rem]"
         />
         <div className="flex flex-col gap-5">
           {deeperGroups.map((group, index) => (
@@ -199,7 +213,8 @@ function LifeSkillsPanel() {
                 <li
                   key={skill}
                   className={cn(
-                    "rounded-[1.15rem] px-6 py-7 text-sm font-bold tracking-wide text-blue uppercase",
+                    "rounded-[1.15rem] px-6 py-7",
+                    boxedLabel,
                     (deeperGroups.slice(0, index).reduce((sum, items) => sum + items.length, 0) + skillIndex) % 2 === 0
                       ? "bg-blue-tint"
                       : "bg-[#f7f6dc]",
@@ -225,7 +240,7 @@ function LifeSkillsPanel() {
               style={{ zIndex: index + 1 }}
             >
               <h4 className="text-[clamp(1.35rem,2vw,1.75rem)] font-bold text-blue">{activity.title}</h4>
-              <MediaPlaceholder label={activity.image} className="mt-3 aspect-[16/7] w-full rounded-[1rem]" />
+              <img src={activity.image} alt={activity.alt} className="mt-3 aspect-[15/7] w-full rounded-[1rem] object-cover" />
             </article>
           ))}
         </div>
@@ -254,7 +269,7 @@ function TennisPanel() {
                   !chapter.imageFirst && "lg:[&>*:first-child]:order-2",
                 )}
               >
-                <MediaPlaceholder label={chapter.image} className="aspect-[16/10] w-full rounded-[1rem]" />
+                <img src={chapter.image} alt={chapter.alt} className="aspect-[3/2] w-full rounded-[1rem] object-cover" />
                 <p className="text-[0.95rem] leading-relaxed font-medium text-blue">{chapter.body}</p>
               </div>
             </article>
@@ -269,7 +284,7 @@ function TennisPanel() {
         <div className="mt-8 grid gap-5 lg:grid-cols-3">
           {pillars.map((pillar) => (
             <article key={pillar.title} className="rounded-[1.25rem] bg-[#f7f6dc] p-3 sm:p-4">
-              <MediaPlaceholder label={pillar.image} className="aspect-[4/5] w-full rounded-[1rem]" />
+              <img src={pillar.image} alt={pillar.alt} className="aspect-[4/3] w-full rounded-[1rem] object-cover" />
               <h4 className="headline mt-5 px-2 text-[1.15rem] leading-tight text-blue">{pillar.title}</h4>
               <p className="mt-3 px-2 text-[0.95rem] leading-relaxed text-blue">{pillar.body}</p>
               <div className="mt-5 px-2 pb-2">

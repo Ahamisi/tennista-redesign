@@ -106,7 +106,7 @@ export function SiteHeader() {
                       className="relative"
                       onMouseEnter={() => (item.menu ? openWith(item.label) : scheduleClose())}
                     >
-                      {item.menu ? (
+                      {item.menu && item.href !== "/programs" ? (
                         <button
                           type="button"
                           aria-expanded={active}
@@ -137,12 +137,16 @@ export function SiteHeader() {
                         <Link
                           href={item.href}
                           aria-current={current ? "page" : undefined}
+                          aria-expanded={item.menu ? active : undefined}
+                          aria-controls={item.menu ? panelId : undefined}
+                          onClick={() => setOpenMenu(null)}
+                          onFocus={() => item.menu && openWith(item.label)}
                           className={cn(
-                            "relative flex items-center rounded-full px-4 py-2.5 font-display text-[1.25rem] leading-none font-bold transition-colors duration-200",
-                            current ? "text-blue-bright" : "text-blue hover:text-blue-bright",
+                            "relative flex items-center gap-1.5 rounded-full px-4 py-2.5 font-display text-[1.25rem] leading-none font-bold transition-colors duration-200",
+                            active || current ? "text-blue-bright" : "text-blue hover:text-blue-bright",
                           )}
                         >
-                          {current && (
+                          {(active || current) && (
                             <motion.span
                               layoutId="nav-pill"
                               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
@@ -150,6 +154,14 @@ export function SiteHeader() {
                             />
                           )}
                           {item.label}
+                          {item.menu ? (
+                            <ChevronDown
+                              className={cn(
+                                "size-3.5 transition-transform duration-300 ease-[var(--ease-out-expo)]",
+                                active && "rotate-180",
+                              )}
+                            />
+                          ) : null}
                         </Link>
                       )}
 
@@ -158,6 +170,7 @@ export function SiteHeader() {
                           <MegaMenu
                             id={panelId}
                             menu={item.menu}
+                            href={item.href === "/programs" ? item.href : undefined}
                             align={item.label === "Media & Events" ? "center" : "start"}
                             onNavigate={() => setOpenMenu(null)}
                           />

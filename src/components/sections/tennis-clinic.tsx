@@ -1,22 +1,21 @@
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
-import { MediaPlaceholder } from "@/components/ui/media-placeholder";
-
 const physicalSkills = [
-  { title: "Footwork", image: "Players moving on a green court" },
-  { title: "Serving", image: "Players tossing the ball to serve" },
-  { title: "Balance", image: "Players standing with rackets" },
-  { title: "Forehand strokes", image: "Player hitting a forehand" },
-  { title: "Backhand strokes", image: "Player hitting a backhand" },
+  { title: "Footwork", image: "/footwork.jpg", alt: "Three players moving across a green court" },
+  { title: "Serving", image: "/serving.jpg", alt: "Players tossing and hitting serves" },
+  { title: "Balance", image: "/balance.jpg", alt: "Young players standing with their rackets" },
+  { title: "Forehand strokes", image: "/forehand-strokes.jpg", alt: "A player hitting a forehand" },
+  { title: "Backhand strokes", image: "/backhand-strokes.jpg", alt: "A player hitting a backhand" },
 ] as const;
 
 const mentalSkills = [
-  { title: "Discipline", image: "Player with racket raised" },
-  { title: "Endurance", image: "Player holding a ready stance" },
-  { title: "Flexibility", image: "Player stretching wide for a ball" },
-  { title: "Motivation", image: "Coach presenting a certificate" },
-  { title: "Concentration", image: "Player crouched low, watching the ball" },
-  { title: "Team spirit", image: "Two players meeting at the net" },
+  { title: "Discipline", image: "/discipline.jpg", alt: "A player with the racket raised" },
+  { title: "Endurance", image: "/endurance.jpg", alt: "A player holding a ready stance" },
+  { title: "Flexibility", image: "/flexibility.jpg", alt: "A player stretching wide for a ball" },
+  { title: "Motivation", image: "/motivation.jpg", alt: "A coach presenting a certificate" },
+  { title: "Concentration", image: "/concentration.jpg", alt: "A player crouched low, watching the ball" },
+  { title: "Team spirit", image: "/team-spirit.jpg", alt: "Two players meeting at the net" },
+  { title: "Strength & strategy", image: "/strngth-stratregy.jpg", alt: "A player swinging through a tennis ball" },
 ] as const;
 
 export function TennisClinic() {
@@ -43,10 +42,10 @@ export function TennisClinic() {
         />
 
         <div className="relative mt-20 overflow-hidden rounded-[1.5rem] bg-blue-tint px-8 py-16 sm:px-16 sm:py-20">
-          <MediaPlaceholder label="Tennis ball" className="absolute -top-8 -left-6 size-28 rounded-full sm:size-36" />
-          <MediaPlaceholder label="Wristband" className="absolute -top-6 -right-8 h-20 w-32 rounded-[1rem] sm:h-24 sm:w-40" />
-          <MediaPlaceholder label="Racket bag" className="absolute -bottom-8 -left-8 h-28 w-36 rounded-[1rem] sm:h-32 sm:w-44" />
-          <MediaPlaceholder label="Racket" className="absolute -right-8 -bottom-10 size-32 rounded-full sm:size-40" />
+          <img src="/tennis-ball.png" alt="" className="pointer-events-none absolute -top-8 -left-8 w-32 sm:w-44" />
+          <img src="/wristband.png" alt="" className="pointer-events-none absolute -top-6 -right-8 w-36 sm:w-48" />
+          <img src="/racket-bag.png" alt="" className="pointer-events-none absolute -bottom-8 -left-8 w-40 sm:w-52" />
+          <img src="/racket.png" alt="" className="pointer-events-none absolute -right-6 -bottom-8 w-36 sm:w-48" />
           <p className="relative z-10 mx-auto max-w-xl text-center text-[1.02rem] leading-relaxed font-medium text-blue">
             Your kids will have access to free tennis equipment, gear, courts, and career growth
             opportunities in tennis through our partnerships and allies.
@@ -78,7 +77,7 @@ function SkillStack({
   skills,
 }: {
   heading: string;
-  skills: readonly { title: string; image: string }[];
+  skills: readonly { title: string; image: string; alt: string }[];
 }) {
   return (
     <div className="mt-16 grid items-start gap-8 lg:mt-20 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-12">
@@ -93,7 +92,7 @@ function SkillStack({
             style={{ zIndex: index + 1 }}
           >
             <h3 className="text-sm font-bold tracking-wide text-blue uppercase">{skill.title}</h3>
-            <MediaPlaceholder label={skill.image} className="mt-3 aspect-[16/9] w-full rounded-[1rem]" />
+            <img src={skill.image} alt={skill.alt} className="mt-3 h-auto w-full rounded-[1rem]" />
           </article>
         ))}
       </div>

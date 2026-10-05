@@ -35,7 +35,7 @@ export function MeansSection() {
 
       <div className="pointer-events-none relative z-10 mx-auto mt-4 aspect-[653/659] w-[min(100%,40.8125rem)] lg:absolute lg:top-[7.5rem] lg:right-0 lg:mt-0">
         <img src="/image_bg_border.svg" alt="" className="absolute inset-0 h-full w-full" />
-        <Image
+        {/* <Image
           src="/tennis-means-girl.png"
           alt="A smiling child"
           width={753}
@@ -43,7 +43,7 @@ export function MeansSection() {
           quality={100}
           unoptimized
           className="absolute top-[-18%] left-[-7%] h-[128%] w-auto max-w-none"
-        />
+        /> */}
       </div>
 
       <div

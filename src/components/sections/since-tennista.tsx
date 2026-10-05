@@ -1,35 +1,29 @@
-import { MediaPlaceholder } from "@/components/ui/media-placeholder";
-
 /**
- * Full-bleed statement under the Arthur Ashe quote. The arcs sit on the
- * right of the photo until the cutout export replaces the placeholder.
+ * Full-bleed statement. The court photo carries the player and the circle
+ * motif; the headline sits in HTML over the left of the frame.
  */
 export function SinceTennista() {
   return (
-    <section aria-labelledby="since-heading" className="relative min-h-[34rem] overflow-hidden bg-blue sm:min-h-[40rem]">
-      <MediaPlaceholder label="Since 2021, Tennista" className="absolute inset-0 h-full w-full rounded-none" />
-      <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-blue/80 via-blue/35 to-transparent" />
+    <section aria-labelledby="since-heading" className="relative isolate overflow-hidden bg-[#8aa0b0]">
+      <img
+        src="/serve-since-2021.jpg"
+        alt="A player reaching forward with a tennis ball"
+        className="absolute inset-0 h-full w-full object-cover object-[72%_center] lg:object-center"
+      />
+      <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/20 to-black/30 lg:hidden" />
 
-      <div className="relative z-10 max-w-[40rem] px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
-        <h2 id="since-heading" className="headline text-display-lg text-white sm:text-display-xl">
-          Since 2021, Tennista has been using tennis to create societal change.
-        </h2>
-        <p className="mt-6 max-w-md text-[0.95rem] leading-relaxed text-white">
-          We believe every young person deserves a chance at success, not just the talented or privileged. At
-          Tennista Foundation, we harness tennis&apos;s power to unlock potential, promote academic excellence,
-          and develop essential life skills.
-        </p>
+      <div className="relative z-10 flex min-h-[32rem] items-start px-5 pt-8 sm:min-h-[36rem] sm:items-center sm:px-8 lg:aspect-[1440/899] lg:min-h-0 lg:items-center lg:px-12">
+        <div className="max-w-[19rem] sm:max-w-[26rem] lg:max-w-[34rem]">
+          <h2 id="since-heading" className="headline text-[clamp(2.15rem,4.2vw,4.15rem)] leading-[0.88] text-white">
+            Since 2021, Tennista has been using tennis to create societal change.
+          </h2>
+          <p className="mt-5 max-w-md text-[0.95rem] leading-relaxed text-white lg:mt-6">
+            We believe every young person deserves a chance at success, not just the talented or privileged. At
+            Tennista Foundation, we harness tennis&apos;s power to unlock potential, promote academic excellence,
+            and develop essential life skills.
+          </p>
+        </div>
       </div>
-
-      <svg
-        viewBox="0 0 640 520"
-        aria-hidden
-        className="pointer-events-none absolute right-0 bottom-0 h-[70%] w-[46%] sm:h-[78%] sm:w-[42%]"
-      >
-        <circle cx="470" cy="390" r="280" fill="none" stroke="#d4de25" strokeWidth="78" />
-        <circle cx="500" cy="410" r="168" fill="#003890" />
-        <circle cx="500" cy="410" r="168" fill="none" stroke="#0060b0" strokeWidth="36" />
-      </svg>
     </section>
   );
 }

@@ -18,11 +18,15 @@ export default function WhatDefinesUsPage() {
       <OurMission />
       <Quotes
         edge="page"
+        overlapNext
         items={[
           {
             text: "Success is a journey, not a destination. The doing is often more important than the outcome.",
             attribution: "Arthur Ashe",
             photo: "Arthur Ashe",
+            image: "/quotes/arthur-ashe.jpg",
+            imageAlign: "right",
+            imagePosition: "object-[center_16%]",
           },
         ]}
       />
@@ -38,6 +42,8 @@ export default function WhatDefinesUsPage() {
             caption:
               "Our programme is built on this connection, giving every beneficiary the opportunity to thrive in both aspects.",
             photo: "Tennis ball on a racket",
+            image: "/quotes/science-proven.jpg",
+            imagePosition: "object-right",
           },
         ]}
       />

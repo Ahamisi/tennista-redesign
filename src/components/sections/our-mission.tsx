@@ -2,25 +2,25 @@
 
 import { useState } from "react";
 import { useReducedMotion } from "motion/react";
-import { MediaPlaceholder } from "@/components/ui/media-placeholder";
 
 const shots = [
-  { label: "Player preparing a shot", tilt: 8.5 },
-  { label: "Player serving", tilt: -5 },
-  { label: "Player moving in", tilt: 3.7 },
-  { label: "Player at the net", tilt: -4.7 },
+  { src: "/our-mission-1.jpg", alt: "A player preparing a two-handed backhand", tilt: 8.5 },
+  { src: "/our-mission-2.jpg", alt: "A player tossing the ball to serve", tilt: -5 },
+  { src: "/our-mission-3.jpg", alt: "A player moving in for a forehand", tilt: 3.7 },
+  { src: "/our-mission-4.jpg", alt: "A player at the net with a two-handed grip", tilt: -6.5 },
 ];
 
-function Shot({ label, tilt, fanned }: { label: string; tilt: number; fanned: boolean }) {
+function Shot({ src, alt, tilt, fanned }: { src: string; alt: string; tilt: number; fanned: boolean }) {
   return (
     <li
       data-mission-card
       className="transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none"
       style={{ transform: `rotate(${fanned ? tilt : 0}deg)` }}
     >
-      <MediaPlaceholder
-        label={label}
-        className="aspect-[3/4] w-full rounded-[1.35rem] shadow-[0_22px_36px_-26px_rgb(0_31_82_/_0.55)]"
+      <img
+        src={src}
+        alt={alt}
+        className="aspect-[3/4] w-full rounded-[1.35rem] object-cover shadow-[0_22px_36px_-26px_rgb(0_31_82_/_0.55)]"
       />
     </li>
   );
@@ -51,7 +51,7 @@ export function OurMission() {
           onMouseLeave={() => setFanned(false)}
         >
           {shots.map((shot) => (
-            <Shot key={shot.label} {...shot} fanned={fanned} />
+            <Shot key={shot.src} {...shot} fanned={fanned} />
           ))}
         </ul>
       </div>
