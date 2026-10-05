@@ -131,9 +131,9 @@ export const footerNav: NavGroup[] = [
   {
     label: "Get Involved",
     links: [
-      { label: "Become a Volunteer", href: "/get-involved/volunteer" },
-      { label: "Partner with Us", href: "/get-involved/partner" },
-      { label: "Sponsor a Student", href: "/get-involved/sponsor-a-student" },
+      { label: "Become a Volunteer", href: "/serve-with-us" },
+      { label: "Partner with Us", href: "/get-involved/support" },
+      { label: "Sponsor a Student", href: "/get-involved/sponsor" },
       { label: "Enrol as a Student", href: "/get-involved/enrol" },
     ],
   },

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
@@ -67,14 +66,14 @@ export function MegaMenu({ menu, onNavigate, id, align = "start", href }: MegaMe
       style={{ marginLeft: shift }}
       className={
         align === "center"
-          ? "absolute top-full left-1/2 z-50 -translate-x-1/2 pt-4"
-          : "absolute top-full left-4 z-50 pt-4"
+          ? "absolute top-full left-1/2 z-50 -translate-x-1/2 pt-14"
+          : "absolute top-full left-4 z-50 pt-14"
       }
     >
       <div className="w-[min(92vw,44rem)] overflow-hidden rounded-panel bg-white shadow-panel ring-1 ring-blue/5">
-        <div className="grid grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)]">
-          {/* Left rail: heading + illustration */}
-          <div className="relative isolate flex h-full min-h-[22rem] flex-col overflow-hidden bg-white px-7 pt-7">
+        <div className="grid min-h-[29rem] grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)]">
+          {/* Left rail: title stays clear; the racket and ball fill the width and sit on the bottom. */}
+          <div className="relative h-full bg-white px-7 pt-7">
             {href ? (
               <Link href={href} onClick={onNavigate} className="relative z-10 w-fit">
                 <h2 className="headline text-[2rem] leading-[0.92] text-blue transition-colors hover:text-blue-bright">
@@ -91,28 +90,22 @@ export function MegaMenu({ menu, onNavigate, id, align = "start", href }: MegaMe
               </h2>
             )}
             {menu.blurb ? (
-              <p className="relative z-10 mt-3 max-w-[14rem] text-[0.8125rem] leading-snug text-ink-subtle">
+              <p className="relative z-10 mt-3 max-w-[13rem] text-[0.8125rem] leading-snug text-ink-subtle">
                 {menu.blurb}
               </p>
             ) : null}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
+            <motion.img
+              src="/tennis-man.svg"
+              alt=""
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
-              className="relative mt-2 min-h-[15rem] flex-1"
-            >
-              <Image
-                src="/menu-art.png"
-                alt=""
-                fill
-                sizes="320px"
-                className="object-contain object-bottom"
-              />
-            </motion.div>
+              className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-auto w-full"
+            />
           </div>
 
           {/* Right rail: links */}
-          <motion.ul variants={stagger(0.05, 0.08)} initial="hidden" animate="visible" className="p-5 sm:p-6">
+          <motion.ul variants={stagger(0.05, 0.08)} initial="hidden" animate="visible" className="relative z-10 bg-white p-5 sm:p-6">
             {menu.sections.map((section) =>
               isNavGroup(section) ? (
                 <motion.li key={section.label} variants={megaItem} className="mb-2">

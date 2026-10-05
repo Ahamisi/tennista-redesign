@@ -132,6 +132,12 @@
     text-rendering: optimizeLegibility;
   }
 
+  button:not(:disabled),
+  a[href],
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+
   ::selection {
     background-color: var(--color-lime);
     color: var(--color-blue-deep);
@@ -155,6 +161,126 @@
 
   .lenis.lenis-stopped {
     overflow: hidden;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Tennis CTA interactions
+--------------------------------------------------------------------------- */
+.tennis-cta__label {
+  position: relative;
+  z-index: 2;
+}
+
+.tennis-cta__decoration {
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.tennis-cta--lime .tennis-cta__decoration {
+  inset: 0;
+}
+
+.tennis-cta--lime .tennis-cta__decoration::before,
+.tennis-cta--lime .tennis-cta__decoration::after {
+  position: absolute;
+  top: -35%;
+  width: 38%;
+  height: 170%;
+  border: 0.38em solid white;
+  border-radius: 50%;
+  content: "";
+  opacity: 0;
+  transition:
+    opacity 220ms ease,
+    transform 480ms var(--ease-out-expo);
+}
+
+.tennis-cta--lime .tennis-cta__decoration::before {
+  left: -18%;
+  transform: translateX(-30%) scale(0.86);
+}
+
+.tennis-cta--lime .tennis-cta__decoration::after {
+  right: -18%;
+  transform: translateX(30%) scale(0.86);
+}
+
+.tennis-cta--lime:is(:hover, :focus-visible, :active) .tennis-cta__decoration::before,
+.tennis-cta--lime:is(:hover, :focus-visible, :active) .tennis-cta__decoration::after {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+.tennis-cta--outline .tennis-cta__decoration {
+  top: 72%;
+  left: -2.25rem;
+  width: min(2rem, calc(100% - 0.75rem));
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--color-lime);
+  opacity: 0;
+  transform: translateY(-50%) rotate(-35deg);
+}
+
+.tennis-cta--outline .tennis-cta__decoration::before,
+.tennis-cta--outline .tennis-cta__decoration::after {
+  position: absolute;
+  top: -20%;
+  width: 72%;
+  height: 140%;
+  border: 0.18rem solid white;
+  border-radius: 50%;
+  content: "";
+}
+
+.tennis-cta--outline .tennis-cta__decoration::before {
+  left: -45%;
+}
+
+.tennis-cta--outline .tennis-cta__decoration::after {
+  right: -45%;
+}
+
+.tennis-cta--outline:is(:hover, :focus-visible, :active) .tennis-cta__decoration {
+  animation: tennis-ball-swing 900ms var(--ease-in-out-smooth) both;
+}
+
+@keyframes tennis-ball-swing {
+  0% {
+    top: 72%;
+    left: -2.25rem;
+    opacity: 0;
+    transform: translateY(-50%) rotate(-45deg) scale(0.72);
+  }
+  12% {
+    opacity: 1;
+  }
+  28% {
+    top: 18%;
+    left: 20%;
+    opacity: 1;
+    transform: translateY(-50%) rotate(35deg) scale(1);
+  }
+  52% {
+    top: 76%;
+    left: 48%;
+    opacity: 1;
+    transform: translateY(-50%) rotate(135deg) scale(0.92);
+  }
+  76% {
+    top: 20%;
+    left: 76%;
+    opacity: 0.8;
+    transform: translateY(-50%) rotate(230deg) scale(0.84);
+  }
+  100% {
+    top: 66%;
+    left: calc(100% + 0.25rem);
+    opacity: 0;
+    transform: translateY(-50%) rotate(330deg) scale(0.65);
   }
 }
 

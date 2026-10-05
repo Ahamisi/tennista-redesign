@@ -6,16 +6,16 @@ type Variant = "lime" | "blue" | "outlineWhite" | "outlineBlue" | "ghost";
 type Size = "sm" | "md" | "lg";
 
 const base =
-  "group/btn relative inline-flex items-center justify-center gap-2 rounded-full font-sans font-bold " +
+  "tennis-cta group/btn relative isolate inline-flex cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-full font-sans font-bold " +
   "whitespace-nowrap transition-[transform,background-color,color,border-color,box-shadow] duration-200 " +
   "ease-[var(--ease-out-expo)] will-change-transform hover:-translate-y-0.5 active:translate-y-0 " +
   "disabled:pointer-events-none disabled:opacity-50";
 
 const variants: Record<Variant, string> = {
-  lime: "bg-lime text-blue-deep hover:bg-lime-soft hover:shadow-cta",
-  blue: "bg-blue text-white hover:bg-blue-bright hover:shadow-cta",
-  outlineWhite: "border-2 border-white text-white hover:bg-white hover:text-blue",
-  outlineBlue: "border-2 border-blue text-blue hover:bg-blue hover:text-white",
+  lime: "tennis-cta--lime bg-lime text-blue-deep hover:bg-lime-soft hover:shadow-cta",
+  blue: "tennis-cta--outline bg-blue text-white hover:bg-blue-bright hover:shadow-cta",
+  outlineWhite: "tennis-cta--outline border-2 border-white text-white hover:shadow-cta",
+  outlineBlue: "tennis-cta--outline border-2 border-blue text-blue hover:shadow-cta",
   ghost: "text-blue hover:text-blue-bright",
 };
 
@@ -43,7 +43,8 @@ export function Button(props: ButtonAsLink | ButtonAsButton) {
     const { variant = "lime", size = "md", className, children, href, ...linkProps } = props;
     return (
       <Link href={href} className={cn(base, variants[variant], sizes[size], className)} {...linkProps}>
-        {children}
+        <span className="tennis-cta__decoration" aria-hidden />
+        <span className="tennis-cta__label">{children}</span>
       </Link>
     );
   }
@@ -51,7 +52,8 @@ export function Button(props: ButtonAsLink | ButtonAsButton) {
   const { variant = "lime", size = "md", className, children, ...buttonProps } = props;
   return (
     <button className={cn(base, variants[variant], sizes[size], className)} {...buttonProps}>
-      {children}
+      <span className="tennis-cta__decoration" aria-hidden />
+      <span className="tennis-cta__label">{children}</span>
     </button>
   );
 }

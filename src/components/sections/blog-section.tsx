@@ -3,24 +3,23 @@
 import Link from "next/link";
 import { useCallback, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { MediaPlaceholder } from "@/components/ui/media-placeholder";
 import { cn } from "@/lib/utils";
 
 const posts = [
   {
     title: "Atilola, Zara, others shine at Tennista Foundation Junior Tennis' tourney",
     href: "/media/tennis-news/atilola-zara-others-shine-at-tennista-foundation-junior-tennis-tourney",
-    image: "Junior tennis tourney",
+    image: "/2025-tournament-1.jpg",
   },
   {
     title: "Tennista offer junior tennis tournament winners, runner-ups scholarship",
     href: "/media/tennis-news/tennista-offer-junior-tennis-tournament-winners-runner-ups-scholarship",
-    image: "Scholarship presentation",
+    image: "/2026-tournament-3.jpg",
   },
   {
     title: "55 kids serve off maiden Tennista Junior Tennis Open",
     href: "/media/tennis-news/55-kids-serve-off-maiden-tennista-junior-tennis-open",
-    image: "Junior tennis open",
+    image: "/junior-tennis-open-cover.jpg",
   },
 ] as const;
 
@@ -107,12 +106,13 @@ export function BlogSection() {
             {posts.map((post) => (
               <article
                 key={post.href}
-                className="w-[min(100%,34rem)] shrink-0 snap-start rounded-[1.25rem] bg-[#f8f8dc] p-3 sm:w-[calc((100%-2.5rem)/2.15)] sm:p-4"
+                className="w-[min(100%,34rem)] shrink-0 snap-start rounded-[1.25rem] bg-[#f8f8dc] p-3 sm:w-[calc((100%-1.25rem)/2)] sm:p-4 lg:w-[calc((100%-2.5rem)/3)]"
               >
                 <Link href={post.href} className="group block">
-                  <MediaPlaceholder
-                    label={post.image}
-                    className="aspect-[4/3] w-full rounded-[1.15rem] transition-transform duration-300 group-hover:scale-[1.01]"
+                  <img
+                    src={post.image}
+                    alt=""
+                    className="aspect-[4/3] w-full rounded-[1.15rem] object-cover transition-transform duration-300 group-hover:scale-[1.01]"
                   />
                   <h3 className="headline mt-5 px-2 text-[1.15rem] leading-[1.2] text-blue sm:text-[1.35rem]">
                     {post.title}

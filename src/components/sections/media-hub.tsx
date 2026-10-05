@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform, type MotionValue } from "motion/react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { MediaPlaceholder } from "@/components/ui/media-placeholder";
@@ -16,23 +17,64 @@ const tabs = [
 type TabId = (typeof tabs)[number]["id"];
 
 const shots = [
-  { label: "Close-up at the net", x: -560, y: 42, rotate: -18 },
-  { label: "Player in a yellow jacket", x: -330, y: 6, rotate: -11, anchor: true },
-  { label: "Three players on court", x: -70, y: -36, rotate: -1 },
-  { label: "Player with a headscarf", x: 210, y: -6, rotate: 9 },
-  { label: "Racket in the foreground", x: 390, y: 22, rotate: 14 },
-  { label: "Player walking off court", x: 560, y: 52, rotate: 18 },
+  {
+    image: "/feed-your-eyes-1.png",
+    alt: "Close-up of a young player on court",
+    x: -43,
+    y: 76,
+    width: "clamp(9rem,15.5vw,14rem)",
+  },
+  {
+    image: "/feed-your-eyes-2.png",
+    alt: "A young player reaching forward with a tennis racket",
+    x: -25,
+    y: 16,
+    width: "clamp(13rem,25.5vw,23rem)",
+  },
+  {
+    image: "/feed-your-eyes-3.png",
+    alt: "A coach standing with two junior tennis players",
+    x: 0,
+    y: -19,
+    width: "clamp(11rem,21.3vw,19rem)",
+  },
+  {
+    image: "/feed-your-eyes-4.png",
+    alt: "A young player wearing a headscarf and holding a racket",
+    x: 25,
+    y: 16,
+    width: "clamp(13rem,25.5vw,23rem)",
+  },
+  {
+    image: "/feed-your-eyes-5.png",
+    alt: "A junior player walking across a clay court",
+    x: 43,
+    y: 76,
+    width: "clamp(9rem,15.5vw,14rem)",
+  },
 ] as const;
 
 const news = [
-  { title: "Atilola, Zara, others shine at Tennista Foundation Junior Tennis' tourney", image: "Winners with trophies" },
-  { title: "Tennista offer junior tennis tournament winners, runner-ups scholarship", image: "Scholarship cheque presentation" },
-  { title: "55 kids serve off maiden Tennista Junior Tennis Open", image: "Players gathered at the tournament" },
-  { title: "Tennista Foundation to exhibit at 2025 Olney Community Day", image: "Olney community day" },
-  { title: "Tennista boosts tennis development at Igbobi College", image: "Cheque presentation at Igbobi" },
-  { title: "Djokovic vs Brooksby: Match insights with Watson", image: "Match ranking graphic" },
-  { title: "Dreaming big: 8 unforgettable 2021 US Open breakthroughs", image: "Two players on court" },
-  { title: "Emma Raducanu leads British invasion at the 2021 US Open", image: "Player with a trophy" },
+  {
+    title: "Atilola, Zara, others shine at Tennista Foundation Junior Tennis' tourney",
+    image: "/2025-tournament-1.jpg",
+    href: "/media/tennis-news/atilola-zara-others-shine-at-tennista-foundation-junior-tennis-tourney",
+  },
+  {
+    title: "Tennista offer junior tennis tournament winners, runner-ups scholarship",
+    image: "/2026-tournament-3.jpg",
+    href: "/media/tennis-news/tennista-offer-junior-tennis-tournament-winners-runner-ups-scholarship",
+  },
+  {
+    title: "55 kids serve off maiden Tennista Junior Tennis Open",
+    image: "/junior-tennis-open-cover.jpg",
+    href: "/media/tennis-news/55-kids-serve-off-maiden-tennista-junior-tennis-open",
+  },
+  { title: "Tennista Foundation to exhibit at 2025 Olney Community Day", image: "/2025-tournament-2.jpg", href: "/media/tennis-news" },
+  { title: "Tennista boosts tennis development at Igbobi College", image: "/2025-tournament-3.jpg", href: "/media/tennis-news" },
+  { title: "Djokovic vs Brooksby: Match insights with Watson", image: "/2026-tournament-1.jpg", href: "/media/tennis-news" },
+  { title: "Dreaming big: 8 unforgettable 2021 US Open breakthroughs", image: "/2027-tournament-1.jpg", href: "/media/tennis-news" },
+  { title: "Emma Raducanu leads British invasion at the 2021 US Open", image: "/2027-tournament02.jpg", href: "/media/tennis-news" },
 ] as const;
 
 const photos = [
@@ -55,10 +97,13 @@ export function MediaHub({ initialTab = "news" }: { initialTab?: TabId }) {
     target: stageRef,
     offset: ["start start", "end end"],
   });
-  const folded = useTransform(scrollYProgress, [0, 0.18, 0.32, 1], [0, 1, 1, 0]);
-  const followed = useSpring(folded, { stiffness: 28, damping: 18, mass: 1.15, restDelta: 0.0005 });
+  const folded = useTransform(scrollYProgress, [0, 0.72, 1], [0, 1, 1]);
+  const followed = useSpring(folded, { stiffness: 55, damping: 22, mass: 0.8, restDelta: 0.0005 });
   const heldOpen = useMotionValue(1);
   const spread = reduced ? heldOpen : followed;
+  const compactOpacity = useTransform(spread, [0, 0.16, 0.42], [1, 1, 0]);
+  const compactScale = useTransform(spread, [0, 0.42], [1, 0.82]);
+  const stageHeight = useTransform(spread, [0, 1], ["28rem", "34rem"]);
 
   const [tab, setTab] = useState<TabId>(initialTab);
   const [query, setQuery] = useState("");
@@ -68,20 +113,40 @@ export function MediaHub({ initialTab = "news" }: { initialTab?: TabId }) {
 
   return (
     <>
-      <section ref={stageRef} className={reduced ? "bg-white" : "relative h-[280vh] bg-white"}>
+      <section ref={stageRef} className={reduced ? "bg-white" : "relative bg-white md:h-[150vh]"}>
         <div
           className={cn(
             "overflow-x-hidden bg-white px-5 pt-8 pb-6 sm:px-8 lg:px-12",
-            !reduced && "sticky top-[5.25rem]",
+            !reduced && "md:sticky md:top-[5.25rem]",
           )}
         >
-          <div className="relative h-[16rem] w-full sm:h-[20rem] lg:h-[24rem]">
-            {shots.map((shot) => (
-              <CollageShot key={shot.label} shot={shot} spread={spread} />
-            ))}
+          <div className="relative h-[10rem] w-full md:hidden">
+            <div className="absolute top-1/2 left-1/2 h-[4.25rem] w-[6.5rem] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[0.8rem]">
+              <img src="/feed-your-eyes-2.png" alt="A young player reaching forward with a tennis racket" className="absolute top-1/2 left-1/2 h-[165%] w-[165%] max-w-none -translate-x-1/2 -translate-y-1/2 object-cover" />
+            </div>
           </div>
 
-          <h1 className="headline mt-2 text-center text-display-lg text-blue sm:text-display-xl">Feed your eyes</h1>
+          <motion.div className="relative hidden w-full md:block" style={{ height: stageHeight }}>
+            <motion.div
+              aria-hidden
+              className="absolute top-1/2 left-1/2 h-[4.25rem] w-[6.5rem] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[0.8rem]"
+              style={{ opacity: compactOpacity, scale: compactScale }}
+            >
+              <img
+                src="/feed-your-eyes-2.png"
+                alt=""
+                className="absolute top-1/2 left-1/2 h-[165%] w-[165%] max-w-none -translate-x-1/2 -translate-y-1/2 object-cover"
+              />
+            </motion.div>
+            {shots.map((shot) => (
+              <CollageShot key={shot.image} shot={shot} spread={spread} />
+            ))}
+          </motion.div>
+
+          <h1 className="headline mt-2 text-center text-h2">
+            <span className="text-blue">Feed your </span>
+            <span className="text-blue-bright">eyes</span>
+          </h1>
 
           <div className="mt-8 flex w-full flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <label className="relative block w-[17.5rem] shrink-0">
@@ -152,7 +217,7 @@ function GalleryPane({ tab, stories }: { tab: TabId; stories: readonly (typeof n
       <FadeGrid className="grid w-full">
         {events.map((story) => (
           <article key={story.title} className="rounded-[1.25rem] bg-blue-tint p-4">
-            <MediaPlaceholder label={story.image} className="aspect-[16/10] w-full rounded-[1rem]" />
+            <img src={story.image} alt="" className="aspect-[16/10] w-full rounded-[1rem] object-cover" />
             <h2 className="mt-4 text-sm leading-snug font-bold tracking-wide text-blue uppercase">{story.title}</h2>
             <p className="mt-4 border-t border-blue/15 pt-3 text-sm text-ink-muted">01 April 2025</p>
           </article>
@@ -193,8 +258,10 @@ function GalleryPane({ tab, stories }: { tab: TabId; stories: readonly (typeof n
     <FadeGrid className="mx-auto grid w-full gap-5 sm:grid-cols-2 lg:grid-cols-3">
       {stories.map((story) => (
         <article key={story.title} className="rounded-[1.25rem] bg-[#f7f6dc] p-3">
-          <MediaPlaceholder label={story.image} className="aspect-[4/3] w-full rounded-[1rem]" />
-          <h2 className="mt-4 px-2 text-sm leading-snug font-bold tracking-wide text-blue uppercase">{story.title}</h2>
+          <Link href={story.href} className="group block">
+            <img src={story.image} alt="" className="aspect-[4/3] w-full rounded-[1rem] object-cover transition-transform duration-300 group-hover:scale-[1.01]" />
+            <h2 className="mt-4 px-2 text-sm leading-snug font-bold tracking-wide text-blue uppercase">{story.title}</h2>
+          </Link>
           <div className="mx-2 mt-4 flex items-center justify-between border-t border-blue/15 pt-3 text-sm text-ink-muted">
             <span>tennismaster</span>
             <span>0 Comments</span>
@@ -254,22 +321,26 @@ function CollageShot({
   shot: (typeof shots)[number];
   spread: MotionValue<number>;
 }) {
-  const anchor = "anchor" in shot && shot.anchor;
-  const x = useTransform(spread, (value) => value * shot.x);
+  const x = useTransform(spread, (value) => `${value * shot.x}vw`);
   const y = useTransform(spread, (value) => value * shot.y);
-  const rotate = useTransform(spread, (value) => value * shot.rotate);
-  const opacity = useTransform(spread, (value) => (anchor ? 1 : Math.min(1, value * 1.6)));
-  const scale = useTransform(spread, (value) => (anchor ? 0.62 + value * 0.38 : 0.5 + value * 0.5));
+  const opacity = useTransform(spread, [0.12, 0.5], [0, 1]);
+  const scale = useTransform(spread, [0, 1], [0.72, 1]);
 
   return (
     <motion.div
-      className="absolute top-1/2 left-1/2 w-[9.5rem] sm:w-[11.5rem] lg:w-[13.5rem]"
-      style={{ x, y, rotate, opacity, scale, translateX: "-50%", translateY: "-50%", willChange: "transform" }}
+      className="absolute top-1/2 left-1/2 hidden md:block"
+      style={{
+        x,
+        y,
+        opacity,
+        scale,
+        width: shot.width,
+        translateX: "-50%",
+        translateY: "-50%",
+        willChange: "transform, opacity",
+      }}
     >
-      <MediaPlaceholder
-        label={shot.label}
-        className="aspect-[3/4] w-full rounded-[1.15rem] shadow-[0_16px_36px_rgba(15,23,42,0.14)] ring-4 ring-white"
-      />
+      <img src={shot.image} alt={shot.alt} className="block h-auto w-full" />
     </motion.div>
   );
 }

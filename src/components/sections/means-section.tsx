@@ -9,7 +9,7 @@ import { Reveal } from "@/components/ui/reveal";
  */
 export function MeansSection() {
   return (
-    <section className="relative overflow-hidden bg-white lg:min-h-[53.75rem]">
+    <section className="relative overflow-hidden bg-white md:min-h-[53.75rem]">
       <Container
         width="wide"
         className="relative z-20 pt-16 pb-16 sm:pt-20 lg:px-3 lg:pt-[7.5rem] lg:pb-0"
@@ -33,7 +33,7 @@ export function MeansSection() {
         </Reveal>
       </Container>
 
-      <div className="pointer-events-none relative z-10 mx-auto mt-4 aspect-[653/659] w-[min(100%,40.8125rem)] lg:absolute lg:top-[7.5rem] lg:right-0 lg:mt-0">
+      <div className="pointer-events-none relative z-10 mt-4 ml-auto aspect-[653/659] w-[min(100%,40.8125rem)] md:absolute md:top-[7.5rem] md:right-0 md:mt-0">
         <img src="/image_bg_border.svg" alt="" className="absolute inset-0 h-full w-full" />
         {/* <Image
           src="/tennis-means-girl.png"
@@ -48,7 +48,7 @@ export function MeansSection() {
 
       <div
         aria-hidden
-        className="pointer-events-none relative z-30 -mt-14 h-32 text-lime sm:-mt-20 sm:h-40 lg:absolute lg:inset-x-0 lg:bottom-0 lg:mt-0 lg:h-[11.5rem]"
+        className="pointer-events-none relative z-30 -mt-14 h-32 text-lime sm:-mt-20 sm:h-40 md:absolute md:inset-x-0 md:bottom-0 md:mt-0 md:h-[11.5rem]"
       >
         <svg viewBox="0 0 1440 184" preserveAspectRatio="none" className="block h-full w-full">
           <path
